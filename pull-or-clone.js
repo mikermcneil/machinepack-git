@@ -34,7 +34,6 @@ module.exports = {
     .configure($i)
     .exec({
       error: function (err) {
-        console.log('NOW TRYING TO CLONE INSTEAD SINCE PULL FAILED WITH:', err);
         M.require('./clone')
         .configure($i)
         .exec($x);

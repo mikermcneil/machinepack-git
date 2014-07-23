@@ -48,7 +48,7 @@ module.exports = {
 
     git({
       dir: $i.dir,
-      command: ['clone', $i.remote, $i.dir||'']
+      command: ['clone', $i.remote, '.']
     }, $x);
   }
 
