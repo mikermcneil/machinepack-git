@@ -17,7 +17,8 @@ module.exports = {
   moduleName: 'machinepack-git',
   description: 'Fetch from and integrate with another git repository or a local branch',
   dependencies: {
-    './lib/spawn-git-proc': '*'
+    './lib/spawn-git-proc': '*',
+    'fs-extra': '*'
   },
   transparent: true,
 
@@ -44,12 +45,18 @@ module.exports = {
 
   fn: function($i, $x, $d) {
 
+    var fsx = $d['fs-extra'];
     var git = $d['./lib/spawn-git-proc'];
 
-    git({
-      dir: $i.dir,
-      command: ['pull', $i.remote||'origin', $i.branch||'master']
-    }, $x);
+    fsx.ensureDir($i.dir, function(err) {
+      if (err) return $x.error(err);
+
+      git({
+        dir: $i.dir,
+        command: ['pull', $i.remote||'origin', $i.branch||'master']
+      }, $x);
+    });
+
   }
 
 };
