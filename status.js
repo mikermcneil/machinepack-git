@@ -1,10 +1,24 @@
+
+// Usage Example:
+// ----------------------------
+// require('node-machine')
+// .require('./status')
+// .configure({
+//   command: 'pull',
+//   repo: './'
+// }).exec(function(e, o) {
+//   console.log('E:', e);
+//   console.log('O:', o);
+// })
+
+
 module.exports = {
 
   id: 'status',
   moduleName: 'machinepack-git',
   description: 'Get the current "working tree status" of a local git repo.',
   dependencies: {
-    git: '*'
+    './lib/spawn-git-proc': '*'
   },
   transparent: true,
 
@@ -19,30 +33,20 @@ module.exports = {
       example: {}
     },
     success: {
-      example: {}
+      example: 'On branch master\nChanges not staged for commit:\n  (use "git add <file>..." to update what will be committed)\n  (use "git checkout -- <file>..." to discard changes in working directory)\n\n\tmodified:   status.js\n\nno changes added to commit (use "git add" and/or "git commit -a")\n'
     }
   },
 
   fn: function($i, $x, $d) {
 
-    var Github = $d.github;
+    var git = $d['./lib/spawn-git-proc'];
 
-    var github = new Github({
-      version: '3.0.0',
-      // optional
-      // debug: true,
-      // protocol: 'https',
-      // host: 'github.my-GHE-enabled-company.com',
-      // pathPrefix: '/api/v3', // for some GHEs
-      // timeout: 5000
-    });
-
-    github.repos.get({
+    git({
       repo: $i.repo,
-      user: $i.user
-    }, function(err, data) {
+      command: $i.command
+    }, function(err, workingTreeStatus) {
       if (err) return $x(err);
-      else return $x.success(data);
+      else return $x.success(workingTreeStatus);
     });
   }
 
