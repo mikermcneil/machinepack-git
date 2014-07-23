@@ -31,3 +31,6 @@ coverage
 # Other
 ############################
 .node_history
+
+.DS_Store
+

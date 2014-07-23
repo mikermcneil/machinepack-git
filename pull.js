@@ -25,7 +25,7 @@ module.exports = {
     dir: {
       example: './'
     },
-    remoteID: {
+    remote: {
       example: 'origin'
     },
     branch: {
@@ -48,7 +48,7 @@ module.exports = {
 
     git({
       dir: $i.dir,
-      command: ['pull', $i.remoteID||'origin', $i.branch||'master']
+      command: ['pull', $i.remote||'origin', $i.branch||'master']
     }, $x);
   }
 
