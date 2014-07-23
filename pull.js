@@ -2,7 +2,7 @@
 // Usage Example:
 // ----------------------------
 // require('node-machine')
-// .require('./status')
+// .require('./pull')
 // .configure({
 //   repo: './'
 // }).exec(function(e, o) {
@@ -13,9 +13,9 @@
 
 module.exports = {
 
-  id: 'status',
+  id: 'pull',
   moduleName: 'machinepack-git',
-  description: 'Get the current "working tree status" of a local git repo.',
+  description: 'Fetch from and integrate with another git repository or a local branch',
   dependencies: {
     './lib/spawn-git-proc': '*'
   },
@@ -29,10 +29,10 @@ module.exports = {
 
   exits: {
     error: {
-      example: {}
+      example: 'fatal: No remote repository specified.  Please, specify either a URL or a\nremote name from which new revisions should be fetched.\nError: An error occurred spawning `git pull`'
     },
     success: {
-      example: 'On branch master\nChanges not staged for commit:\n  (use "git add <file>..." to update what will be committed)\n  (use "git checkout -- <file>..." to discard changes in working directory)\n\n\tmodified:   status.js\n\nno changes added to commit (use "git add" and/or "git commit -a")\n'
+      example: ''
     }
   },
 
@@ -42,7 +42,7 @@ module.exports = {
 
     git({
       repo: $i.repo,
-      command: 'status'
+      command: 'pull'
     }, $x);
   }
 
