@@ -10,13 +10,13 @@ Machines for working with the `git` command line interface.
 
 ```sh
 $ npm install node-machine
+$ npm install machinepack-git
 ```
 
 ## Basic Usage
 
 ```javascript
 var M = require('node-machine');
-
 
 M.require('machinepack-git/'+MACHINE_ID_HERE)
 .configure(INPUT_VALUES_HERE)
