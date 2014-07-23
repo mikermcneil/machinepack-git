@@ -17,7 +17,10 @@ $ npm install node-machine
 ```javascript
 var M = require('node-machine');
 
-M.require('machinepack-git/{{NAME_OF_MACHINE_HERE}}')
+
+M.require('machinepack-git/'+MACHINE_ID_HERE)
+.configure(INPUT_VALUES_HERE)
+.exec(EXIT_HANDER_HERE);
 ```
 
 For more info about working with machines, see the [node-machine repo](http://github.com/mikermcneil/node-machine).
