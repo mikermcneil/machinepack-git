@@ -7,7 +7,7 @@ module.exports = {
   },
   inputs: {
     remote: 'git://github.com/balderdashy/sails-docs.git',
-    dest: '.tmp/compile-markdown-tree/balderdashy/sails-docs/reference'
+    dir: '.tmp/compile-markdown-tree/balderdashy/sails-docs/reference'
   },
   exits: {
     error: {},

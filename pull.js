@@ -22,8 +22,14 @@ module.exports = {
   transparent: true,
 
   inputs: {
-    repo: {
+    dir: {
       example: './'
+    },
+    remoteID: {
+      example: 'origin'
+    },
+    branch: {
+      example: 'master'
     }
   },
 
@@ -41,8 +47,8 @@ module.exports = {
     var git = $d['./lib/spawn-git-proc'];
 
     git({
-      repo: $i.repo,
-      command: 'pull'
+      dir: $i.dir,
+      command: ['pull', $i.remoteID||'origin', $i.branch||'master']
     }, $x);
   }
 

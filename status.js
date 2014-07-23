@@ -22,7 +22,7 @@ module.exports = {
   transparent: true,
 
   inputs: {
-    repo: {
+    dir: {
       example: './'
     }
   },
@@ -41,7 +41,7 @@ module.exports = {
     var git = $d['./lib/spawn-git-proc'];
 
     git({
-      repo: $i.repo,
+      dir: $i.dir,
       command: 'status'
     }, $x);
   }
