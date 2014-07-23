@@ -32,7 +32,7 @@ module.exports = {
       example: 'fatal: No remote repository specified.  Please, specify either a URL or a\nremote name from which new revisions should be fetched.\nError: An error occurred spawning `git pull`'
     },
     success: {
-      example: ''
+      example: 'Already up-to-date.'
     }
   },
 
