@@ -2,8 +2,7 @@
 
 Machines for working with the `git` command line interface.
 
-> **IMPORTANT**
-> This module requires an accessible `git` in the $PATH to work.
+**IMPORTANT**: This module requires an accessible `git` in the $PATH to work.
 
 
 ## Installation
