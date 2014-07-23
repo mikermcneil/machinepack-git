@@ -1,0 +1,34 @@
+{
+  "name": "machinepack-git",
+  "version": "0.0.0",
+  "description": "Machines for working with the `git` command line interface.",
+  "scripts": {
+    "test": "mocha -b"
+  },
+  "keywords": [
+    "machine",
+    "machines",
+    "github",
+    "github-api",
+    "email"
+  ],
+  "author": "Mike McNeil",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.19.0"
+  },
+  "dependencies": {
+    "git": "~0.1.5"
+  },
+  "machinepack": {
+    "focus": "git",
+    "machine-api": "~0.0.0",
+    "machines": [
+      "pull",
+      "clone",
+      "pull-or-clone",
+      "status",
+      "push"
+    ]
+  }
+}
