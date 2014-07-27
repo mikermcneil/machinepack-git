@@ -35,8 +35,7 @@ module.exports = {
 
   fn: function($i, $x) {
     git({
-      dir: $i.dir,
-      command: ['clone', $i.remote, '.']
+      command: ['clone', $i.remote, $i.dir]
     }, $x);
   }
 
