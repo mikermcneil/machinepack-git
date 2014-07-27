@@ -36,14 +36,14 @@ module.exports = {
     .configure($i)
     .exec({
       error: function (errStatus) {
-        console.log('TRYING TO PULL IN %s...',$i.dir);
-        Machine.require('./pull')
+        // console.log('git status FAILED- trying to clone in "%s"...',$i.dir);
+        Machine.require('./clone')
         .configure($i)
         .exec($x);
       },
       success: function (status){
-        console.log('git status FAILED- trying to clone in "%s"...',$i.dir);
-        Machine.require('./clone')
+        // console.log('TRYING TO PULL IN %s...',$i.dir);
+        Machine.require('./pull')
         .configure($i)
         .exec($x);
       }
