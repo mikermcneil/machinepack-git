@@ -10,9 +10,6 @@ module.exports = {
   id: 'clone',
   moduleName: 'machinepack-git',
   description: 'Clone a remote git repository into a new local directory.',
-  dependencies: {
-    './lib/spawn-git-proc': '*'
-  },
   transparent: true,
 
   inputs: {
@@ -36,8 +33,7 @@ module.exports = {
     }
   },
 
-  fn: function($i, $x, $d) {
-
+  fn: function($i, $x) {
     git({
       dir: $i.dir,
       command: ['clone', $i.remote, '.']

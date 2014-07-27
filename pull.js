@@ -3,6 +3,7 @@
  */
 
 var git = require('./lib/spawn-git-proc');
+var fsx = require('fs-extra');
 
 
 module.exports = {
@@ -10,10 +11,6 @@ module.exports = {
   id: 'pull',
   moduleName: 'machinepack-git',
   description: 'Fetch from and integrate with another git repository or a local branch',
-  dependencies: {
-    './lib/spawn-git-proc': '*',
-    'fs-extra': '*'
-  },
   transparent: true,
 
   inputs: {
@@ -37,9 +34,7 @@ module.exports = {
     }
   },
 
-  fn: function($i, $x, $d) {
-
-    var fsx = $d['fs-extra'];
+  fn: function($i, $x) {
 
     fsx.ensureDir($i.dir, function(err) {
       if (err) return $x.error(err);

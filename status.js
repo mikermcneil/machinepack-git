@@ -24,7 +24,7 @@ module.exports = {
       example: 'On branch master\nChanges not staged for commit:\n  (use "git add <file>..." to update what will be committed)\n  (use "git checkout -- <file>..." to discard changes in working directory)\n\n\tmodified:   status.js\n\nno changes added to commit (use "git add" and/or "git commit -a")\n'
     }
   },
-  fn: function($i, $x, $d) {
+  fn: function($i, $x) {
     git({
       dir: $i.dir,
       command: 'status'

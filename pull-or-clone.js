@@ -1,10 +1,14 @@
+/**
+ * Module dependencies
+ */
+
+var Machine = require('node-machine');
+
+
 module.exports = {
   id: 'pull-or-clone',
   moduleName: 'machinepack-git',
   description: 'Clone a git repo to a folder on disk (or if the folder already exists, just pull)',
-  dependencies: {
-    'node-machine': '*'
-  },
   inputs: {
     dir: {
       example: './'
@@ -26,15 +30,12 @@ module.exports = {
     }
   },
 
-  fn: function ($i,$x,$d) {
-
-    var M = $d['node-machine'];
-
-    M.require('./pull')
+  fn: function ($i,$x) {
+    Machine.require('./pull')
     .configure($i)
     .exec({
       error: function (err) {
-        M.require('./clone')
+        Machine.require('./clone')
         .configure($i)
         .exec($x);
       },
