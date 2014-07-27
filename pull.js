@@ -1,14 +1,8 @@
+/**
+ * Module dependencies
+ */
 
-// Usage Example:
-// ----------------------------
-// require('node-machine')
-// .require('./pull')
-// .configure({
-//   repo: './'
-// }).exec(function(e, o) {
-//   console.log('E:', e);
-//   console.log('O:', o);
-// })
+var git = require('./lib/spawn-git-proc');
 
 
 module.exports = {
@@ -46,7 +40,6 @@ module.exports = {
   fn: function($i, $x, $d) {
 
     var fsx = $d['fs-extra'];
-    var git = $d['./lib/spawn-git-proc'];
 
     fsx.ensureDir($i.dir, function(err) {
       if (err) return $x.error(err);
