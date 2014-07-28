@@ -32,18 +32,18 @@ module.exports = {
 
   fn: function ($i,$x) {
 
-    Machine.require('./status')
+    Machine.build(require('./status'))
     .configure($i)
     .exec({
       error: function (errStatus) {
         // console.log('git status FAILED- trying to clone in "%s"...',$i.dir);
-        Machine.require('./clone')
+        Machine.build(require('./clone'))
         .configure($i)
         .exec($x);
       },
       success: function (status){
         // console.log('TRYING TO PULL IN %s...',$i.dir);
-        Machine.require('./pull')
+        Machine.build(require('./pull'))
         .configure($i)
         .exec($x);
       }
