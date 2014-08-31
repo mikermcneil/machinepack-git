@@ -8,9 +8,7 @@
   "keywords": [
     "machine",
     "machines",
-    "github",
-    "github-api",
-    "email"
+    "git"
   ],
   "author": "Mike McNeil",
   "license": "MIT",
@@ -20,7 +18,8 @@
   "dependencies": {
     "git": "~0.1.5",
     "lodash": "^2.4.1",
-    "fs-extra": "^0.10.0"
+    "fs-extra": "^0.10.0",
+    "node-machine": "^0.2.1"
   },
   "machinepack": {
     "focus": "git",
@@ -29,8 +28,7 @@
       "pull",
       "clone",
       "pull-or-clone",
-      "status",
-      "push"
+      "status"
     ]
   }
 }
