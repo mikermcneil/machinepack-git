@@ -24,9 +24,9 @@
   "machinepack": {
     "machineDir": "machines",
     "machines": [
-      "pull",
       "clone",
       "pull-or-clone",
+      "pull",
       "status"
     ]
   }
