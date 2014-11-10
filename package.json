@@ -22,8 +22,7 @@
     "node-machine": "^0.2.1"
   },
   "machinepack": {
-    "focus": "git",
-    "machine-api": "~0.0.0",
+    "machineDir": "machines",
     "machines": [
       "pull",
       "clone",

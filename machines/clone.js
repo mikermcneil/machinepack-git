@@ -1,25 +1,23 @@
-/**
- * Module dependencies
- */
-
-var git = require('./lib/spawn-git-proc');
-
-
 module.exports = {
 
-  id: 'clone',
-  moduleName: 'machinepack-git',
+  identity: 'clone',
+  friendlyName: 'clone',
   description: 'Clone a remote git repository into a new local directory.',
-  transparent: true,
+  cacheable: true,
 
   inputs: {
     dir: {
-      example: './put/the/new/local/repo/here'
+      example: './put/the/new/local/repo/here',
+      required: true
     },
     remote: {
-      example: 'git://github.com/balderdashy/sails-docs.git'
+      example: 'git://github.com/balderdashy/sails-docs.git',
+      required: true
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     error: {
@@ -33,10 +31,13 @@ module.exports = {
     }
   },
 
-  fn: function($i, $x) {
+  fn: function(inputs, exits) {
+
+    var git = require('../lib/spawn-git-proc');
+
     git({
-      command: ['clone', $i.remote, $i.dir]
-    }, $x);
+      command: ['clone', inputs.remote, inputs.dir]
+    }, exits);
   }
 
 };

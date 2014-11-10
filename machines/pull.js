@@ -1,21 +1,14 @@
-/**
- * Module dependencies
- */
-
-var git = require('./lib/spawn-git-proc');
-var fsx = require('fs-extra');
-
-
 module.exports = {
 
-  id: 'pull',
-  moduleName: 'machinepack-git',
+  identity: 'pull',
+  friendlyName: 'pull',
   description: 'Fetch from and integrate with another git repository or a local branch',
-  transparent: true,
+  cacheable: true,
 
   inputs: {
     dir: {
-      example: './'
+      example: './',
+      required: true
     },
     remote: {
       example: 'origin'
@@ -24,6 +17,9 @@ module.exports = {
       example: 'master'
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     error: {
@@ -34,15 +30,21 @@ module.exports = {
     }
   },
 
-  fn: function($i, $x) {
+  fn: function(inputs, exits) {
 
-    fsx.ensureDir($i.dir, function(err) {
-      if (err) return $x.error(err);
+    var git = require('../lib/spawn-git-proc');
+    var fsx = require('fs-extra');
+
+    fsx.ensureDir(inputs.dir, function(err) {
+      if (err) return exits.error(err);
+
+      var remote = inputs.remote || 'origin';
+      var branch = inputs.branch || 'master';
 
       git({
-        dir: $i.dir,
-        command: ['pull', $i.remote||'origin', $i.branch||'master']
-      }, $x);
+        dir: inputs.dir,
+        command: ['pull', remote, branch]
+      }, exits);
     });
 
   }

@@ -1,21 +1,20 @@
-/**
- * Module dependencies
- */
-
-var git = require('./lib/spawn-git-proc');
-
-
 module.exports = {
 
-  id: 'status',
-  moduleName: 'machinepack-git',
+  identity: 'status',
+  friendlyName: 'status',
   description: 'Get the current "working tree status" of a local git repo.',
-  transparent: true,
+  cacheable: true,
+
   inputs: {
     dir: {
-      example: './'
+      example: './',
+      required: true
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
+
   exits: {
     error: {
       example: {}
@@ -24,11 +23,15 @@ module.exports = {
       example: 'On branch master\nChanges not staged for commit:\n  (use "git add <file>..." to update what will be committed)\n  (use "git checkout -- <file>..." to discard changes in working directory)\n\n\tmodified:   status.js\n\nno changes added to commit (use "git add" and/or "git commit -a")\n'
     }
   },
-  fn: function($i, $x) {
+
+  fn: function(inputs, exits) {
+
+    var git = require('../lib/spawn-git-proc');
+
     git({
-      dir: $i.dir,
+      dir: inputs.dir,
       command: 'status'
-    }, $x);
+    }, exits);
   }
 
 };

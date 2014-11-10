@@ -1,25 +1,26 @@
-/**
- * Module dependencies
- */
-
-var Machine = require('node-machine');
-
-
 module.exports = {
-  id: 'pull-or-clone',
-  moduleName: 'machinepack-git',
+
+  identity: 'pull-or-clone',
+  friendlyName: 'Pull or clone',
   description: 'Clone a git repo to a folder on disk (or if the folder already exists, just pull)',
+  cacheable: true,
+
   inputs: {
     dir: {
-      example: './'
+      example: './',
+      required: true
     },
     remote: {
-      example: 'git://github.com/balderdashy/sails-docs.git'
+      example: 'git://github.com/balderdashy/sails-docs.git',
+      required: true
     },
     branch: {
       example: 'master'
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     error: {
@@ -30,22 +31,31 @@ module.exports = {
     }
   },
 
-  fn: function ($i,$x) {
+  fn: function (inputs, exits) {
+
+    var Machine = require('node-machine');
 
     Machine.build(require('./status'))
-    .configure($i)
+    .configure({
+      dir: inputs.dir
+    })
     .exec({
       error: function (errStatus) {
-        // console.log('git status FAILED- trying to clone in "%s"...',$i.dir);
         Machine.build(require('./clone'))
-        .configure($i)
-        .exec($x);
+        .configure({
+          dir: inputs.dir,
+          remote: inputs.remote
+        })
+        .exec(exits);
       },
       success: function (status){
-        // console.log('TRYING TO PULL IN %s...',$i.dir);
         Machine.build(require('./pull'))
-        .configure($i)
-        .exec($x);
+        .configure({
+          dir: inputs.dir,
+          remote: inputs.remote,
+          branch: inputs.branch || 'master'
+        })
+        .exec(exits);
       }
     });
   }
