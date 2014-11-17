@@ -7,6 +7,7 @@ module.exports = {
 
   inputs: {
     dir: {
+      description: 'Path (relative or absolute) to the working copy to get the status of.',
       example: './',
       required: true
     }

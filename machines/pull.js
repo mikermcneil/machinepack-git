@@ -7,13 +7,16 @@ module.exports = {
 
   inputs: {
     dir: {
+      description: 'Path (relative or absolute) to the working copy that the remote repo should be pulled into.',
       example: './',
       required: true
     },
     remote: {
+      description: 'Remote Git reference.',
       example: 'origin'
     },
     branch: {
+      description: 'Remote Git branch.',
       example: 'master'
     }
   },

@@ -7,14 +7,17 @@ module.exports = {
 
   inputs: {
     dir: {
+      description: 'Path (relative or absolute) to the directory where the repo should be cloned.  Will be created if necessary.',
       example: './',
       required: true
     },
     remote: {
+      description: 'Remote Git repo URL to clone.',
       example: 'git://github.com/balderdashy/sails-docs.git',
       required: true
     },
     branch: {
+      description: 'Branch of the repo to clone.  Defaults to "master".',
       example: 'master'
     }
   },
