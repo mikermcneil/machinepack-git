@@ -36,7 +36,7 @@ module.exports = {
 
   fn: function (inputs, exits) {
 
-    var Machine = require('node-machine');
+    var Machine = require('machine');
 
     Machine.build(require('./status'))
     .configure({
