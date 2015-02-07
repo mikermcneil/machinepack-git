@@ -1,6 +1,6 @@
 {
   "name": "machinepack-git",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Machines for working with the `git` command line interface.",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
