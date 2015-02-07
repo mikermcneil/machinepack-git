@@ -32,5 +32,9 @@
       "pull",
       "status"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mikermcneil/machinepack-git.git"
   }
 }
