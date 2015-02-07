@@ -8,22 +8,24 @@
   "keywords": [
     "machine",
     "machines",
-    "git"
+    "git",
+    "git-cli",
+    "git-repo",
+    "command-line"
   ],
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.19.0",
     "test-machinepack-mocha": "^0.2.2"
   },
   "dependencies": {
     "git": "~0.1.5",
     "lodash": "^2.4.1",
     "fs-extra": "^0.10.0",
-    "machine": "^1.0.7"
+    "machine": "^3.0.0"
   },
   "machinepack": {
-    "machineDir": "machines",
+    "machineDir": "machines/",
     "machines": [
       "clone",
       "pull-or-clone",
