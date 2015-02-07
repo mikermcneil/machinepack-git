@@ -16,7 +16,7 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "test-machinepack-mocha": "^0.2.3"
+    "test-machinepack-mocha": "^0.2.2"
   },
   "dependencies": {
     "git": "~0.1.5",
@@ -31,7 +31,8 @@
       "pull-or-clone",
       "pull",
       "status"
-    ]
+    ],
+    "testsUrl": "https://travis-ci.org/mikermcneil/machinepack-git"
   },
   "repository": {
     "type": "git",
