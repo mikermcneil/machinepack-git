@@ -16,7 +16,7 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "test-machinepack-mocha": "^0.2.2"
+    "test-machinepack-mocha": "^0.2.3"
   },
   "dependencies": {
     "git": "~0.1.5",
