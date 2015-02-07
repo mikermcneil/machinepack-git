@@ -2,8 +2,16 @@
   "machine": "status",
   "expectations": [
     {
+      "using": {
+        "dir": "/tmp/foo/some/non/git/repo"
+      },
+      "outcome": "error"
+    },
+    {
       "todo": true,
-      "using": {},
+      "using": {
+        "dir": "/tmp/foo/bar/baz"
+      },
       "outcome": "success"
     }
   ]

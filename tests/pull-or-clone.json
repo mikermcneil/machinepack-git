@@ -2,8 +2,10 @@
   "machine": "pull-or-clone",
   "expectations": [
     {
-      "todo": true,
-      "using": {},
+      "using": {
+        "dir": "/tmp/foo/bar/baz",
+        "remote": "git@github.com:node-machine/rttc.git"
+      },
       "outcome": "success"
     }
   ]

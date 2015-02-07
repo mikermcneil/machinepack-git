@@ -3,7 +3,9 @@
   "expectations": [
     {
       "todo": true,
-      "using": {},
+      "using": {
+        "dir": "/tmp/foo/bar"
+      },
       "outcome": "success"
     }
   ]
