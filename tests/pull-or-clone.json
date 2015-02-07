@@ -1,0 +1,10 @@
+{
+  "machine": "pull-or-clone",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}
