@@ -23,10 +23,7 @@ module.exports = {
 
   exits: {
     error: {
-      example: {
-        code: 'E_GIT',
-        message: 'An error occurred spawning `git clone`:\nstdout:\n\nstderr:\n\n\nPlease review the docs for the machine you\'re using\n(and check that the usage displayed above looks correct)'
-      }
+      example: 'An error occurred spawning `git clone`:\nstdout:\n\nstderr:\n\n\nPlease review the docs for the machine you\'re using\n(and check that the usage displayed above looks correct)'
     },
     success: {
       example: 'Cloning into \'./put/the/new/local/repo/here\'...'
