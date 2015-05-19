@@ -1,38 +1,41 @@
 module.exports = {
 
-  identity: 'pull-or-clone',
   friendlyName: 'Pull or clone',
+
+
   description: 'Clone a git repo to a folder on disk (or if the folder already exists, just pull)',
+
+
   cacheable: true,
 
+
   inputs: {
-    dir: {
-      description: 'Path (relative or absolute) to the directory where the repo should be cloned.  Will be created if necessary.',
+
+    destination: {
+      description: 'The path where the remote repo should be pulled (will be created if necessary)',
       example: './',
       required: true
     },
+
     remote: {
-      description: 'Remote Git repo URL to clone.',
-      example: 'git://github.com/balderdashy/sails-docs.git',
-      required: true
+      description: 'The git remote to pull from (defaults to "origin", but you can specify a named remote or URL)',
+      example: 'origin',
+      defaultsTo: 'origin'
     },
+
     branch: {
-      description: 'Branch of the repo to clone.  Defaults to "master".',
-      example: 'master'
+      description: 'The remote branch to pull (defaults to "master")',
+      example: 'master',
+      defaultsTo: 'master'
     }
+
   },
 
-  defaultExit: 'success',
-  catchallExit: 'error',
 
   exits: {
-    error: {
-      example: 'fatal: No remote repository specified.  Please, specify either a URL or a\nremote name from which new revisions should be fetched.\nError: An error occurred spawning `git pull`'
-    },
-    success: {
-      example: 'Already up-to-date.'
-    }
+
   },
+
 
   fn: function (inputs, exits) {
 
@@ -46,7 +49,7 @@ module.exports = {
       error: function (errStatus) {
         Machine.build(require('./clone'))
         .configure({
-          dir: inputs.dir,
+          destination: inputs.destination,
           remote: inputs.remote
         })
         .exec(exits);
@@ -54,7 +57,7 @@ module.exports = {
       success: function (status){
         Machine.build(require('./pull'))
         .configure({
-          dir: inputs.dir,
+          destination: inputs.destination,
           remote: inputs.remote,
           branch: inputs.branch || 'master'
         })

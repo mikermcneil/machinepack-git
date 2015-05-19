@@ -3,16 +3,9 @@
   "expectations": [
     {
       "using": {
-        "dir": "/tmp/foo/some/non/git/repo"
+        "dir": "/tmp/foo/some/folder/that/doesnt/exist"
       },
-      "outcome": "error"
-    },
-    {
-      "todo": true,
-      "using": {
-        "dir": "/tmp/foo/bar/baz"
-      },
-      "outcome": "success"
+      "outcome": "noSuchDir"
     }
   ]
 }

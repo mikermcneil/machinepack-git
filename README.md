@@ -26,5 +26,4 @@ Learn more at <a href="http://node-machine.org/implementing/FAQ" title="Machine 
 
 ## License
 
-MIT &copy; 2014 Mike McNeil and contributors
-
+MIT &copy; 2015 Mike McNeil and contributors  .
