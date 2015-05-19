@@ -150,12 +150,10 @@ module.exports = {
       forbidden: exits.forbidden,
       noSuchDir: exits.noSuchDir,
       success: function (outs) {
-        console.log(outs);
         //{
         //  stdout: 'Already up-to-date.\n',
         //  stderr: 'From github.com:mikermcneil/scribe\n * branch            master     -> FETCH_HEAD\n'
         //}
-
 
         /*
         {
