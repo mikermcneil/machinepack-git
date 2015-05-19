@@ -70,7 +70,7 @@ module.exports = {
         //  • 'On branch master\nYour branch is up-to-date with \'origin/master\'.\n\nnothing to commit, working directory clean\n'
         //    -or-
         //  • 'On branch master\nYour branch is up-to-date with \'origin/master\'.\n\nChanges not staged for commit:\n  (use "git add <file>..." to update what will be committed)\n  (use "git checkout -- <file>..." to discard changes in working directory)\n\n\tmodified:   machines/clone.js\n\tmodified:   machines/pull-or-clone.js\n\tmodified:   machines/pull.js\n\tmodified:   machines/status.js\n\tmodified:   package.json\n\nno changes added to commit (use "git add" and/or "git commit -a")\n',
-        return exits.success();
+        return exits.success(outs.stdout);
       }
     });
   }
