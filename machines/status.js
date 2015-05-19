@@ -1,7 +1,7 @@
 module.exports = {
 
 
-  friendlyName: 'status',
+  friendlyName: 'Status',
 
 
   description: 'Get the current "working tree status" of a local git repo.',
