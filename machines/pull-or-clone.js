@@ -34,35 +34,61 @@ module.exports = {
 
   exits: {
 
+    notRepo: {
+      description: 'Specified directory is not a git repository (and neither are any of its parents)'
+    },
+
+    forbidden: {
+      description: 'Insufficient permissions (i.e. you might need to use `chown`/`chmod`)'
+    },
+
+    noSuchDir: {
+      description: 'Specified directory does not exist.'
+    },
+
+    uncommittedChanges: {
+      description: 'Cannot pull because uncommitted/unstashed local changes exist locally and would be overwritten by merge.'
+    },
+
+    unresolvedConflicts: {
+      description: 'Cannot pull because this local repo has unmerged conflicts.',
+      extendedDescription: 'To get past this, one would need to resolve the merge conflicts manually, commit the changes (`git commit -am "..your msg.."`), then run this machine again.'
+    },
+
+    failed: {
+      description: 'The command failed-- the local repo may now be in an invalid/unmerged state. Please verify that this is not the case.',
+      extendedDescription: 'If this exit is traversed, it means the child process running `git pull` failed with an exit code of 1, and the output didn\'t match any of our other heuristics for detecing errors.'
+    },
+
+    success: {
+      description: 'Done.'
+    }
+
   },
 
 
   fn: function (inputs, exits) {
 
-    var Machine = require('machine');
+    var thisPack = require('../');
 
-    Machine.build(require('./status'))
-    .configure({
-      dir: inputs.dir
-    })
-    .exec({
-      error: function (errStatus) {
-        Machine.build(require('./clone'))
-        .configure({
+    thisPack.status({
+      dir: inputs.destination
+    }).exec({
+      error: exits.error,
+      noSuchDir: function () {
+        thisPack.clone({
           destination: inputs.destination,
           remote: inputs.remote
-        })
-        .exec(exits);
-      },
+        }).exec(exits);
+      }, //</status.noSuchDir>
       success: function (status){
-        Machine.build(require('./pull'))
-        .configure({
+        thisPack.pull({
           destination: inputs.destination,
           remote: inputs.remote,
-          branch: inputs.branch || 'master'
-        })
-        .exec(exits);
-      }
-    });
+          branch: inputs.branch
+        }).exec(exits);
+      } //</status.success>
+    }); // </status>
   }
+
 };
