@@ -19,9 +19,6 @@
     "test-machinepack-mocha": "^0.2.2"
   },
   "dependencies": {
-    "fs-extra": "^0.10.0",
-    "git": "~0.1.5",
-    "lodash": "^2.4.1",
     "machine": "^8.0.0",
     "machinepack-process": "^1.2.0"
   },
