@@ -54,8 +54,13 @@ module.exports = {
       extendedDescription: 'To get past this, one would need to resolve the merge conflicts manually, commit the changes (`git commit -am "..your msg.."`), then run this machine again.'
     },
 
+    failed: {
+      description: 'The command failed-- the local repo may now be in an invalid/unmerged state. Please verify that this is not the case.',
+      extendedDescription: 'If this exit is traversed, it means the child process running `git pull` failed with an exit code of 1, and the output didn\'t match any of our other heuristics for detecing errors.'
+    },
+
     success: {
-      example: 'Already up-to-date.'
+      description: 'Done.'
     }
 
   },
@@ -70,7 +75,7 @@ module.exports = {
     }, {
       error: function (err) {
         try {
-          console.log(err, Object.keys(err), err.signal, err.killed, err.code);
+          // console.log(err, Object.keys(err), err.signal, err.killed, err.code);
           if (err.message.match(/Not a git repository/)) {
             return exits.notRepo();
           }
@@ -96,6 +101,7 @@ module.exports = {
           }
 
           if (err.message.match(/Pull is not possible because you have unmerged files/i)) {
+            // (Note that err.code should also be === 1 in this case)
             return exits.unresolvedConflicts();
              /*
              Error: Command failed: Pull is not possible because you have unmerged files.
@@ -112,6 +118,18 @@ module.exports = {
           }
 
 
+
+          // In the case where new merge conflicts are created locally and local repo gets into an unmerged state,
+          // the code will always be 1.
+          //
+          // BUT for some reason, we can't access the output you normally see on the CLI:
+          // ```
+          // Auto-merging README.md
+          // CONFLICT (content): Merge conflict in README.md
+          // Automatic merge failed; fix conflicts and then commit the result.
+          // ```
+          //
+          // Instead we get:
            /*
            Error: Command failed: From github.com:mikermcneil/machinepack-git
              * branch            master     -> FETCH_HEAD
@@ -120,8 +138,11 @@ module.exports = {
                 at ChildProcess.EventEmitter.emit (events.js:98:17)
                 at maybeClose (child_process.js:743:16)
                 at Process.ChildProcess._handle.onexit (child_process.js:810:5)
-            */
-           // ========== ==================== ========== and then ========== ==================== ==========
+          */
+          if (err.code === 1) {
+            return exits.failed(err);
+          }
+
         }
         catch (e){}
         return exits.error(err);
