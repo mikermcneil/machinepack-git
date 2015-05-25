@@ -16,10 +16,10 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "test-machinepack-mocha": "^0.2.2"
+    "test-machinepack-mocha": "^1.0.0"
   },
   "dependencies": {
-    "machine": "^8.0.0",
+    "machine": "^9.0.3",
     "machinepack-process": "^1.2.0"
   },
   "machinepack": {
