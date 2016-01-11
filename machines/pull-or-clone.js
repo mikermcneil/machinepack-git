@@ -78,7 +78,8 @@ module.exports = {
       noSuchDir: function () {
         thisPack.clone({
           destination: inputs.destination,
-          remote: inputs.remote
+          remote: inputs.remote,
+          branch: inputs.branch
         }).exec(exits);
       }, //</status.noSuchDir>
       success: function (status){

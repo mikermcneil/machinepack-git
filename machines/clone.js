@@ -23,6 +23,11 @@ module.exports = {
       description: 'The URL of the git remote repository that will be cloned.',
       example: 'git://github.com/balderdashy/sails-docs.git',
       required: true
+    },
+
+    branch: {
+      description: 'The remote branch to check out after pulling (if omitted, do not check out anything-- just use whatever the default is)',
+      example: 'master'
     }
 
   },
@@ -49,6 +54,9 @@ module.exports = {
 
     var Proc = require('machinepack-process');
 
+    // Ensure destination is an absolute path.
+    inputs.destination = require('path').resolve(inputs.destination);
+
     Proc.spawn({
       command: 'git clone ' + inputs.remote + ' ' + inputs.destination
     }, {
@@ -66,7 +74,25 @@ module.exports = {
         return exits.error(err);
       },
       success: function (outs) {
-        return exits.success();
+
+        // If a specific branch was not specified, then we're done.
+        if (!inputs.branch) {
+          return exits.success();
+        }
+
+        // But if it was, then we need to check out that branch.
+        Proc.spawn({
+          command: 'git checkout '+inputs.branch,
+          dir: inputs.destination
+        }).exec({
+          error: function (err) {
+            return exits.error(err);
+          },
+          success: function () {
+            return exits.success();
+          }
+        });
+
       }
     });
   }
